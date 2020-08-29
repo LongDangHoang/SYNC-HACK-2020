@@ -1,17 +1,11 @@
 from database import project_schema, user_schema
 import time
 
-# import utils
 import utils
+
 app = Flask(__name__)
 
 projects = []
-for i in range(10):
-    project = project_schema.create('Water Rockets', '2w', \
-            ['science', 'engineering', 'space', 'rocket', 'physics', 'models'], \
-            ['drill', 'scissors', 'knife', 'tape', 'sandpaper'], \
-            ['plastic bottles', 'paper', 'strut', 'cardboard', 'garden hose tap', 'foam'])
-    projects.append(project)
 projects.append(project_schema.create(
     'Water Rockets', '2w', \
     ['science', 'engineering', 'space', 'rocket', 'physics', 'models', 'patience', 'long-term effort'], \
@@ -54,12 +48,6 @@ projects.append(project_schema.create(
 
 @app.route("/process", methods=['POST'])
 def match_preference():
-    user_tags = request.form['tags']   # list of strings
-    user_reqs = request.form['resources'] # list of strings
-    # more user_relevant features
-
-    pass_required = utils.filter(projects, user_reqs)
-    sorted_projects = sorted(projects, key=utils.string_match())
     # user_tags = request.form['tags']   # list of strings
     # user_reqs = request.form['resources'] # list of strings
     # # more user_relevant features
