@@ -17,15 +17,15 @@ for i in range(10):
 
 @app.route("/process", methods=['POST'])
 def match_preference():
-    # user_tags = request.form['tags']   # list of strings
-    # user_reqs = request.form['resources'] # list of strings
-    # # more user_relevant features
+    user_tags = request.form['tags']   # list of strings
+    user_reqs = request.form['resources'] # list of strings
+    # more user_relevant features
 
-    # pass_required = utils.filter(projects, user_reqs)
-    # sorted_projects = sorted(projects, key=utils.string_match())
+    pass_required = utils.filter(projects, user_reqs)
+    sorted_projects = sorted(projects, key=utils.string_match())
 
-    # return jsonify(sorted_projects)
-    return "ANOTHER HELLO WORLD!"
+    return jsonify(sorted_projects)
+    # return "ANOTHER HELLO WORLD!"
 
 @app.route("/")
 def hello():
