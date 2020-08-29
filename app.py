@@ -1,29 +1,18 @@
 from flask import Flask, render_template, request, jsonify
-from copy import deepcopy
+from database import project_schema, user_schema
 
-import utils
+# import utils
 
 app = Flask(__name__)
 
-project_template = { \
-                    "name": None,\
-                    "time": None,\
-                    "tags": [], \
-                    "tools": [], \
-                    "mater": [], \
-                    "age_r": None, \
-                    "numb": None, \
-                    "instructions": [] \
-}
 
-project_1 = deepcopy(project_template)
-project_1['name'] = 'Water Rockets'
-project_1['time'] = '2w'
-project_1['tags'] = ['science', 'engineering', 'space', 'rocket', 'physics', 'models']
-project_1['tools'] = ['drill', 'scissors', 'knife', 'tape', 'sandpaper']
-project_1['mater'] = ['plastic bottles', 'paper', 'strut', 'cardboard', 'garden hose tap', 'foam']
-
-projects = [project_1]
+projects = []
+for i in range(10):
+    project = project_schema.create('Water Rockets', '2w', \
+            ['science', 'engineering', 'space', 'rocket', 'physics', 'models'], \
+            ['drill', 'scissors', 'knife', 'tape', 'sandpaper'], \
+            ['plastic bottles', 'paper', 'strut', 'cardboard', 'garden hose tap', 'foam'])
+    projects.append(project)
 
 @app.route("/process", methods=['POST'])
 def match_preference():
@@ -39,7 +28,7 @@ def match_preference():
 
 @app.route("/")
 def hello():
-    return render_template("index.html")
+    return render_template("index.html", projects=projects)
 
 if __name__ == "__main___":
     app.run(debug=True)
