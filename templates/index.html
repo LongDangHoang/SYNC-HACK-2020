@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1><b>Hello World!</b></h1>
+        <br>
+        <button onclick="makepost()">PRESS ME</button>
+
+    <script>
+        function makepost() {
+            console.log("Clicked");
+            $.ajax('/process', {
+                type: 'POST',
+                data: { myData: 'EmptyString'},
+                success: function(data, status, xhr) {
+                    console.log(data);
+                    $('h1').html(data);
+                },
+                error: function(jqXhr, textStatus, errorMessage) {
+                    console.log("Error!");
+                }
+            });   
+        }
+    </script>
+    </body>
+</html>
+
