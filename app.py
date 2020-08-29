@@ -12,16 +12,31 @@ def match_preference():
     # user_reqs = request.form['resources'] # list of strings
     # # more user_relevant features
 
+    return jsonify(sorted_projects)
+    # return "ANOTHER HELLO WORLD!"
     # pass_required = utils.filter(projects, user_reqs)
     # sorted_projects = sorted(projects, key=utils.string_match())
 
-    # return jsonify(sorted_projects)
-    return "ANOTHER HELLO WORLD!"
+# Called whenever a checkbox is ticked/unticked
+# Updates projects shown on page based on preferences chosen
+current_preferences = []
+@app.route('/update_preferences', methods=['POST'])
+def update_preferences():
+    print("Hello")
+    jsondata = request.get_json()
+    print(jsondata)
+    pref_name = jsondata['pref_name']   # name of preference ticked/unticked
+    pref_ticked = jsondata['pref_value'] # preference ticked or not
+    print(pref_name, pref_ticked) # testing
+    current_preferences.append(pref_name)
+    # RUN SORT
+    if pref_ticked and len(current_preferences) == 1: # Just add projects
+        # Search projects list for one with corresponding preference tag
+        for project in projects:
+            if project[]
 
-# Testing React works
-@app.route('/time')
-def get_current_time():
-    return {'time': time.asctime( time.localtime(time.time()))}
+    # RETURN ranked projects
+    return "Placeholder"
 
 if __name__ == "__main___":
     app.run(debug=True)
