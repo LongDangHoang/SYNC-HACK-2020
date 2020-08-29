@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from database import project_schema, user_schema
+import time
 
 # import utils
 
@@ -29,6 +30,11 @@ def match_preference():
 @app.route("/")
 def hello():
     return render_template("index.html", projects=projects)
+
+# Testing React works
+@app.route('/time')
+def get_current_time():
+    return {'time': time.asctime( time.localtime(time.time()))}
 
 if __name__ == "__main___":
     app.run(debug=True)
