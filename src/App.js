@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+
 import './App.css';
+import ProjectCard from './components/project_card/project_card'
 
 function App(props) {
   const [currentTime, setCurrentTime] = useState(0);
@@ -35,50 +30,10 @@ function App(props) {
       <body>
         <Preferences/>
         <div className="MediaCard">
-          <MediaCard/>
+          <ProjectCard />
         </div>
       </body>
     </div>
-  );
-}
-
-// card styling
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 300,
-  },
-  media: {
-    height: 140,
-  },
-});
-
-function MediaCard(name) {
-  const classes = useStyles();
-
-  return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={require ("./components/images/eggdrop.jpg")}
-          title="Egg drop activity"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h4" component="h2">
-            Egg Drop
-          </Typography>
-          {/* <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography> */}
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
-    </Card>
   );
 }
 
@@ -150,8 +105,22 @@ class Preferences extends React.Component {
             onChange={this.handleInputChange} />
            6-12
         </label><br></br> 
-        <h2>Interest</h2>
         <label>
+          <input
+            name="12-16"
+            type="checkbox"
+            checked={this.state.isGoing}
+            onChange={this.handleInputChange} />
+           12-16
+        </label><br></br><h2>Interest</h2>
+        <label>
+          <input
+            name="16+"
+            type="checkbox"
+            checked={this.state.isGoing}
+            onChange={this.handleInputChange} />
+           16+
+        </label><br></br><label>
           <input
             name="Arts"
             type="checkbox"
@@ -183,7 +152,14 @@ class Preferences extends React.Component {
             onChange={this.handleInputChange} />
            Biology
         </label><br></br>
-        <br />
+        <label>
+          <input
+            name="Engineering"
+            type="checkbox"
+            checked={this.state.isGoing}
+            onChange={this.handleInputChange} />
+           6-12
+        </label><br></br><br />
       </form>
     );
   }

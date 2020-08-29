@@ -3,9 +3,27 @@
 }
 
 .ProfileMenu {
-    flex: 0 0 30;
+    flex: 0 0 30%;
 }
 
 .ProfileContent {
     flex: 1 0px;
+}
+
+.ProfileMenu > ul img {
+    content: url("../images/ava.jpg");
+    max-width: 50px;
+    height: auto;
+}
+
+.ProfileMenu > ul {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+.ProfileMenu > ul li {
+    display: flex;
+    padding: 10px;
+    justify-content: center;
 }
