@@ -1,0 +1,11 @@
+.Profile {
+    display: flex;
+}
+
+.ProfileMenu {
+    flex: 0 0 30;
+}
+
+.ProfileContent {
+    flex: 1 0px;
+}
