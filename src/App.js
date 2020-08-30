@@ -6,11 +6,12 @@ import './App.css';
 import ProjectCard from './components/project_card/project_card'
 
 function App(props) {
-  const [currentTime, setCurrentTime] = useState(0);
+  const [currentProjects, setCurrentProjects] = useState(0);
   const { classes } = props;
+  
   useEffect(() => {
-    fetch('/time').then(res => res.json()).then(data => {
-      setCurrentTime(data.time);
+    fetch('/api/get_all_projects').then(res => res.json()).then(data => {
+      setCurrentProjects(data.projects);
     });
   }, []);
 
@@ -27,14 +28,30 @@ function App(props) {
         </Button>
       </nav></header>
       
-      <body>
-        <Preferences/>
-        <div className="MediaCard">
-          <ProjectCard />
+      <body className="ProjectDashboardMainBody">
+        <Preferences className="PreferencesMenu"/>
+        <div className="ProjectDashboard">
+          {createProjectCards(currentProjects)}
         </div>
       </body>
     </div>
   );
+}
+
+function createProjectCards(currentProjects) {
+  const result = [];
+  for (var i=0; i<currentProjects.length; i+=4) {
+    var projects = currentProjects.slice(i, i+4)
+    result.push(
+    <div className='ProjectDashboardRow'>
+      { projects.map(p => {
+          return (<ProjectCard project={p} className="ProjectCard"/>)
+        })
+      }
+    </div>)
+  }
+  console.log(result)
+  return result
 }
 
 class Preferences extends React.Component {
@@ -57,7 +74,7 @@ class Preferences extends React.Component {
       [name]: value
     });
     // send JSON data to Flask backend
-    fetch('/update_preferences', {
+    fetch('/api/update_preferences', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({

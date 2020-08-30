@@ -9,33 +9,29 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
-  root: {
-    maxWidth: 300,
-  },
   media: {
-    height: 140,
+    height: 40,
   },
 });
 
-function ProjectCard() {
+function ProjectCard(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={props.className} id={props.project['name']}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
           image={require ("../images/eggdrop.jpg")}
-          title="Egg drop activity"
+          title={props.project['name']}
         />
         <CardContent>
           <Typography gutterBottom variant="h4" component="h2">
-            Egg Drop
+            {props.project['name']}
           </Typography>
-          {/* <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography> */}
+          <Typography variant="body2" color="textSecondary" component="p">
+            This project takes {props.project['time']} to complete and are suitable for interests in {props.project['tags']}
+          </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>

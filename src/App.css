@@ -27,9 +27,6 @@
   color: #61dafb;
 }
 
-.MediaCard {
-  display: block;
-}
 
 body {
   margin-left: 30px;
@@ -52,4 +49,34 @@ li {
   to {
     transform: rotate(360deg);
   }
+}
+
+.ProjectDashboardMainBody {
+  display: flex;
+}
+
+.PreferencesMenu {
+  flex: 0 0 25%;
+}
+
+.PreferencesMenu > form {
+  display: flex;
+  flex-direction: column; 
+}
+
+.ProjectDashboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.ProjectDashboardRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.ProjectCard {
+  width: 150px;
+  height: 200px;
+  margin: 25px
 }

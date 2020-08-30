@@ -12,7 +12,7 @@ age_ranges = {'1-2': 0, '3-6': 1, '6-12': 2, '12-16': 3, '16+': 4}
 current_reqs = {'age': [], 'indoors': [None, None], 'numb': None}
 current_prefs = []
 
-@app.route('/update_preferences', methods=['POST'])
+@app.route('/api/update_preferences', methods=['POST'])
 def update_preferences():
     print("Hello")
     
@@ -57,9 +57,9 @@ def update_preferences():
     # RETURN ranked projects
     return "Placeholder"
 
-@app.route('/time')
-def get_time():
-    return {'time': time.time()}
+@app.route('/api/get_all_projects')
+def get_all_projects():
+    return {'projects': projects}
 
 if __name__ == "__main___":
     app.run(debug=True)
